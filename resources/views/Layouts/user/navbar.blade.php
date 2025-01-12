@@ -1,25 +1,29 @@
-<!-- Bottom Navigation Bar -->
-<nav class="navbar navbar-dark bg-secondary fixed-bottom">
-    <div class="container-fluid d-flex justify-content-around">
-        <a href="{{ route('dashboardTapCoin')}}" class="nav-link text-white text-center">
-            <img src="{{ asset('icon/HomePage.svg') }}" alt="Home" style="width: 30px; height: 30px;">
-            <div>Home</div>
-        </a>
-        <a href="{{ route('profileHistory')}}" class="nav-link text-white text-center">
-            <img src="{{ asset('icon/ActivityHistory.svg') }}" alt="History" style="width: 30px; height: 30px;">
-            <div>History</div>
-        </a>
-        <a href="{{ route('Deposit')}}" class="nav-link text-white text-center">
-            <img src="{{ asset('icon/Wallet.svg') }}" alt="Deposite" style="width: 30px; height: 30px;">
-            <div>Deposite</div>
-        </a>
-        <a href="{{ route('profileMission')}}" class="nav-link text-white text-center">
-            <img src="{{ asset('icon/Mission.svg') }}" alt="Mission" style="width: 30px; height: 30px;">
-            <div>Mission</div>
-        </a>
-        <a href="{{ route('profileSettings')}}" class="nav-link text-white text-center">
-            <img src="{{ asset('icon/Settings.svg') }}" alt="Settings" style="width: 30px; height: 30px;">
-            <div>Settings</div>
-        </a>
+<link rel="stylesheet" href="{{asset('css/navbar.css')}}">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <!-- Left Section: Logo and Title -->
+      <div class="d-flex align-items-center gap-2 " style="margin-left: 5%" id="content-nav-start">
+          <img src="{{asset('user/Logo_NU_CARE-LAZISNU 1.svg')}}" alt="Logo" class="img-fluid" style="max-width: 50px; height: auto;" >
+          <div class="d-flex flex-row gap-1">
+            <h3 class="mb-0" style="font-size: 1rem; color: #007646;">LAZISNU</h3>
+            <h3 class="mb-0" style="font-size: 1rem;">KOTA BATAM</h3>
+          </div>
+      </div>
+  
+      <!-- Right Section: Navbar Toggle and Links -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup" style="margin-right: 5%">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="{{route('program')}}" >Program</a>
+          <a class="nav-link" href="#" >Berita</a>
+          <a class="nav-link" href="#" >Tentang Kami</a>
+          <button type="button" class="btn btn-success" style="margin-left: 10px; width:80px;">Login</button>
+        </div>
+      </div>
     </div>
-</nav>
+  </nav>
+  
