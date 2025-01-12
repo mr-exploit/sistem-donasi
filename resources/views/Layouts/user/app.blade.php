@@ -19,11 +19,10 @@
 </head>
 {{-- @include('template.user.style') --}}
 
-
 <body>
-
+    @include('Layouts.user.navbar')
     {{-- <main> --}}
-    @yield('content')
+        @yield('content')
     {{-- </main> --}}
 
     {{--@include('template.user.navbar')--}}
@@ -37,6 +36,7 @@
     <script type="text/javascript" src="{{ asset('js/chart.umd.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/chartjs-plugin-datalabels.js') }}"></script>
 
+    @include('Layouts.user.footer')
     @yield('script')
 </body>
 
