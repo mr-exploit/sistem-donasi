@@ -1,13 +1,7 @@
 @extends('Layouts.user.app')
 @section('title', 'Program')
 
-<style>
-    @media(max-width: 576px) {
-      #component-fitur{
-        gap: 20px !important;
-      }
-    }
-</style>
+<link rel="stylesheet" href="{{asset('css/programUser.css')}}">
 
 @section('content')
 <div class="d-flex flex-column justify-content-center align-items-center mt-4 flex-wrap">
