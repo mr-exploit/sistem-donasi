@@ -1,0 +1,19 @@
+.nav-link {
+    color: #878787d1; /* Default color */
+    text-decoration: none; /* Removes underline */
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+.nav-link:hover {
+    color: #111111; /* Bright green for hover */
+    text-decoration: none; /* Optional underline */
+}
+
+@media (max-width: 768px) {
+    #content-nav-start {
+        margin-left: 0% !important;
+    }
+    .btn {
+        margin-left: 0% !important;
+    }
+}

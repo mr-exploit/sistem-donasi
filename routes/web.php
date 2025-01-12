@@ -22,6 +22,8 @@ Route::group(
     }
 );
 Route::get('/', [UserController::class, 'index'])->name('home');
+Route::get('/program', [UserController::class, 'programView'])->name('program');
+Route::get('/berita', [UserController::class, 'beritaView'])->name('berita');
 
 // Route::get('/', function () {
 //     return view('welcome');

@@ -1,0 +1,33 @@
+@media (max-width: 768px) {
+    hr {
+        display: none;
+    }
+    #product-text {
+        font-size: 2rem;
+    }
+    #selengkapnya-text {
+        font-size: 2rem;
+    }
+    #location-text {
+        margin: 2px !important;
+    }
+    #telepon-text {
+        margin: 2px !important;
+    }
+    #telepon-text br {
+        display: none;
+    }
+    .location-component {
+        justify-content: center !important;
+    }
+    .telepon-component {
+        justify-content: center !important;
+    }
+    #media-sosial-text {
+        font-size: 2rem;
+    }
+    #media-sosial-component {
+        display: flex;
+        justify-content: center;
+    }
+}
