@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/datatables.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buttons.dataTables.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('css/main.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('simplelineicons/css/simple-line-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">

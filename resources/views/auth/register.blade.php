@@ -13,7 +13,11 @@
                         <div class="col-lg">
                             <div class="p-5">
                                 <div class="modal-body">
-                                    <h2 class="text-center mb-5">Create Account TON MASTER</h2>
+                                    <div class="d-flex justify-content-center flex-row text-center gap-2 mb-5">
+                                        <h2>Create Account</h2>
+                                        <h2 style="color:#007646"> LazisNu </h2>
+                                        <h2>Kota Batam</h2>
+                                    </div>
                                     @include('layouts.message')
                                     <form action="" method="post">
                                         @csrf
@@ -32,16 +36,13 @@
                                             <input type="email" class="form-control" id="emailcreate" placeholder="Email" name="email" required>
                                         </div>
                                         <div class="mb-3">
-                                            <input type="text" class="form-control" id="referalCode" placeholder="Submit Refferal Code" name='refferalCode'>
-                                        </div>
-                                        <div class="mb-3">
                                             <input type="password" class="form-control" id="passwordcreate" placeholder="Create Password" name="password">
                                         </div>
                                         <div class="mb-3">
                                             <input type="password" class="form-control" id="passwordcreate" placeholder="Re-type Password" name="confirm_password">
                                         </div>
 
-                                        <button type="submit" class="btn btn-grays w-100">Register</button>
+                                        <button type="submit" class="btn btn-grays w-100" style="background-color: #007646; color:#fff;">Register</button>
                                         <div class="d-flex justify-content-center mt-3">
                                             <a class="me-3 text-link navit" href="{{ url('login') }}">Already have an account? Sign in</a>
                                         </div>

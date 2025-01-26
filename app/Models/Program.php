@@ -15,6 +15,7 @@ class Program extends Model
         'kategori_id',
         'nama',
         'img_program',
+        'slug',
         'deskripsi',
         'target_donasi',
         'donasi_terkumpul',

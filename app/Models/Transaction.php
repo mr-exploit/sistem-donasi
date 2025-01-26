@@ -21,6 +21,7 @@ class Transaction extends Model
         'payment_type',
         'transaction_id',
         'va_number',
+        'status',
         'transaction_status',
         'transaction_time',
     ];

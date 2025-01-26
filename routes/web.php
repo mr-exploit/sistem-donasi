@@ -24,6 +24,15 @@ Route::group(
 Route::get('/', [UserController::class, 'index'])->name('home');
 Route::get('/program', [UserController::class, 'programView'])->name('program');
 Route::get('/berita', [UserController::class, 'beritaView'])->name('berita');
+Route::get('/donasi', [UserController::class, 'donasiPage'])->name('donasi');
+
+
+
+Route::get('/berita/{slug}', [UserController::class, 'detail'])->name('beritaDetail');
+
+// login and register path
+Route::get('/login', [UserController::class, 'loginPage'])->name('login');
+Route::get('/register', [UserController::class, 'registerPage'])->name('register');
 
 // Route::get('/', function () {
 //     return view('welcome');
