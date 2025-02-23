@@ -13,14 +13,35 @@ class UserController extends Controller
     //
     public function index()
     {
-        $berita = Berita::all();
-        return view('users.index', compact('berita'));
+        $berita = Berita::latest()->take(3)->get();
+        $donasi = Program::select('program.*') // Ambil semua kolom dari tabel program
+            ->leftJoin('transaction', 'program.id', '=', 'transaction.program_id')
+            ->selectRaw('COALESCE(COUNT(transaction.program_id), 0) AS jumlah_donatur')
+            ->groupBy('program.id', 'program.nama')
+            ->with('kategori') // Include kategori untuk program
+            ->limit(3)
+            ->get();
+        return view('users.index', compact('berita', 'donasi'));
+    }
+    public function TermsAndCondition()
+    {
+        return view('users.terms');
+    }
+
+    public function PrivacyPolicy()
+    {
+        return view('users.privacy');
     }
 
     public function programView()
     {
-        $kategory = KategoriProgram::where('group', 'programs')->get();
-        return view('users.program');
+        $donasi = Program::select('program.*') // Ambil semua kolom dari tabel program
+            ->leftJoin('transaction', 'program.id', '=', 'transaction.program_id')
+            ->selectRaw('COALESCE(COUNT(transaction.program_id), 0) AS jumlah_donatur')
+            ->groupBy('program.id', 'program.nama')
+            ->with('kategori') // Include kategori untuk program
+            ->get();
+        return view('users.program', compact('donasi'));
     }
 
     public function beritaView(Request $request)
@@ -40,12 +61,33 @@ class UserController extends Controller
         return view('users.berita', compact('berita', 'query'));
     }
 
-    public function detail($slug)
+    public function detailBerita($slug)
     {
         $berita = Berita::where('slug', $slug)->firstOrFail();
 
         return view('users.beritaDetail', compact('berita'));
     }
+
+    public function detailProgram($slug)
+    {
+        $program = Program::select('program.*')
+            ->where('slug', $slug)
+            ->leftJoin('transaction', 'program.id', '=', 'transaction.program_id')
+            ->selectRaw('COALESCE(COUNT(transaction.program_id), 0) AS jumlah_donatur')
+            ->groupBy('program.id', 'program.nama')
+            ->with('kategori') // Include kategori untuk program
+            ->get()
+            ->firstOrFail();
+        $donasi = Program::select('program.*') // Ambil semua kolom dari tabel program
+            ->leftJoin('transaction', 'program.id', '=', 'transaction.program_id')
+            ->selectRaw('COALESCE(COUNT(transaction.program_id), 0) AS jumlah_donatur')
+            ->groupBy('program.id', 'program.nama')
+            ->with('kategori') // Include kategori untuk program
+            ->get();
+        // dd($program);
+        return view('users.programDetail', compact('program', 'donasi'));
+    }
+
 
     public function loginPage()
     {

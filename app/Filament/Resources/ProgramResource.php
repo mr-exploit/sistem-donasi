@@ -7,6 +7,7 @@ use App\Filament\Resources\ProgramResource\RelationManagers;
 use App\Models\Program;
 use App\Models\KategoriProgram;
 use Filament\Forms;
+use App\Models\User;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -28,7 +29,7 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\DeleteBulkAction;
-
+use Illuminate\Support\Str;
 use function Laravel\Prompts\select;
 
 class ProgramResource extends Resource
@@ -37,6 +38,16 @@ class ProgramResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    public static function getModelLabel(): string
+    {
+        return 'Program';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Program';
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -44,6 +55,11 @@ class ProgramResource extends Resource
                 //
                 Card::make()->schema([
                     TextInput::make('nama')
+                        ->required()
+                        ->reactive()
+                        ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
+                    TextInput::make('slug')
+                        ->disabled()
                         ->required(),
                     Select::make('kategori_id')
                         ->label('Kategori') // Label untuk field
@@ -53,6 +69,21 @@ class ProgramResource extends Resource
                                 ->toArray()
                         )
                         ->searchable()
+                        ->required(),
+                    Select::make('kecamatan')
+                        ->options([
+                            'batu aji' => 'Batu Aji',
+                            'batam kota' => 'Batam Kota',
+                            'bengkong' => 'Bengkong',
+                            'batu ampar' => 'Batu Ampar',
+                            'nongsa' => 'Nongsa',
+                            'bulang' => 'Bulang',
+                            'galang' => 'Galang',
+                            'lubuk baja' => 'Lubuk Baja',
+                            'sei beduk' => 'Sei Beduk',
+                            'sekupang' => 'Sekupang',
+                            'belakang padang' => 'Belakang Padang',
+                        ])
                         ->required(),
                     FileUpload::make('img_program')
                         ->image()
@@ -70,6 +101,7 @@ class ProgramResource extends Resource
                     Toggle::make('isDone')
                         ->onColor('success')
                         ->offColor('danger'),
+
                     Select::make('status')
                         ->options([
                             'draft' => 'Draft',
@@ -95,6 +127,22 @@ class ProgramResource extends Resource
                     ->label('Kategori')
                     ->searchable()
                     ->sortable(),
+                SelectColumn::make('kecamatan')
+                    ->searchable()
+                    ->options([
+                        'batu aji' => 'Batu Aji',
+                        'batam kota' => 'Batam Kota',
+                        'bengkong' => 'Bengkong',
+                        'batu ampar' => 'Batu Ampar',
+                        'nongsa' => 'Nongsa',
+                        'bulang' => 'Bulang',
+                        'galang' => 'Galang',
+                        'lubuk baja' => 'Lubuk Baja',
+                        'sei beduk' => 'Sei Beduk',
+                        'sekupang' => 'Sekupang',
+                        'belakang padang' => 'Belakang Padang',
+                    ])
+                    ->sortable(),
                 ImageColumn::make('img_program')
                     ->label('Gambar Program')
                     ->searchable()
@@ -105,15 +153,20 @@ class ProgramResource extends Resource
                     ->sortable(),
                 TextColumn::make('target_donasi')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->formatStateUsing(fn($state) => number_format($state, 0, ',', '.')),
                 TextColumn::make('donasi_terkumpul')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->formatStateUsing(fn($state) => number_format($state ?? 0, 0, ',', '.')),
                 ToggleColumn::make('isDone')
                     ->label('Selesai')
                     ->sortable()
                     ->searchable()
                     ->toggleable(),
+                TextColumn::make('created_by')
+                    ->searchable()
+                    ->sortable(),
                 SelectColumn::make('status')
                     ->searchable()
                     ->options([
@@ -158,5 +211,35 @@ class ProgramResource extends Resource
             'create' => Pages\CreateProgram::route('/create'),
             'edit' => Pages\EditProgram::route('/{record}/edit'),
         ];
+    }
+
+    public static function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['slug'] = Str::slug($data['nama']); // Generate slug dari judul
+        // Cari user dengan username 'admin'
+        $admin = User::where('username', 'admin')->first();
+
+        if (!$admin) {
+            throw new \Exception("User dengan username 'admin' tidak ditemukan.");
+        }
+
+        $data['created_by'] = $admin->username; // Isi created_by dengan ID admin
+        return $data;
+    }
+
+    public static function mutateFormDataBeforeSave(array $data): array
+    {
+        if (!isset($data['slug']) || empty($data['slug'])) {
+            $data['slug'] = Str::slug($data['nama']); // 
+        }
+        // Pastikan created_by hanya diubah jika diperlukan
+        if (!isset($data['created_by'])) {
+            $admin = User::where('username', 'admin')->first();
+            if ($admin) {
+                $data['created_by'] = $admin->username;
+            }
+        }
+
+        return $data;
     }
 }

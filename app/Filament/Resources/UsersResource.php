@@ -11,7 +11,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Card;
@@ -31,9 +30,9 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Queries\Concerns\InteractsWithTable;
 use Filament\Queries\Concerns\InteractsWithForms;
-use Filament\Resources\Resource\getEloquentQuery;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Enums\FiltersLayout;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class UsersResource extends Resource
@@ -146,17 +145,6 @@ class UsersResource extends Resource
         ];
     }
 
-    // public static function getEloquentQuery(): Builder
-    // {
-    //     return parent::getEloquentQuery()->userAndAmil();
-    // }
-    // public function scopeUserAndAmil($query)
-    // {
-    //     return $query->whereHas('role', function ($subQuery) {
-    //         $subQuery->whereIn('name', ['user', 'amil']);
-    //     });
-    // }
-
     protected static function booted()
     {
         static::updated(function ($program) {
@@ -173,5 +161,17 @@ class UsersResource extends Resource
             'create' => Pages\CreateUsers::route('/create'),
             'edit' => Pages\EditUsers::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        // return parent::getEloquentQuery()
+        //     ->join('user_role', 'users.role_id', '=', 'user_role.id')
+        //     ->select('users.*', 'user_role.name as role_name') // Menambahkan kolom role_name
+        //     ->whereIn('user_role.name', ['amil', 'user', 'donatur']); // Hanya role "Amil"
+        return parent::getEloquentQuery()
+            ->whereHas('role', function ($query) {
+                $query->whereIn('name', ['amil', 'users', 'donatur']);
+            });
     }
 }

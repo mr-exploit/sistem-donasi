@@ -31,9 +31,17 @@
         <a class="nav-link {{ request()->routeIs('tentang') ? 'fw-bold text-black' : '' }}" href="#">
           Tentang Kami
         </a>
+        @auth
+        <div class="hidden sm:flex items-center">
+          <button class="btn btn-success" style="margin-left: 10px; width: 80px;">
+            {{ Auth::user()->name }}
+          </button>
+        </div>
+        @else
         <a href="{{ route('login') }}" class="btn btn-success" style="margin-left: 10px; width: 80px;">
           Login
         </a>
+        @endauth
       </div>
     </div>
   </div>

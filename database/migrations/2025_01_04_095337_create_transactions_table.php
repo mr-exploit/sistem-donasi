@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('nama');
+            $table->string('kecamatan');
             $table->date('tgl_faktur');
             $table->integer('jumlah_donasi');
             $table->string('payment_type');

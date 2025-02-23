@@ -19,7 +19,7 @@
                                         <h2>Kota Batam</h2>
                                     </div>
                                     @include('layouts.message')
-                                    <form action="" method="post">
+                                    <form action="{{route('createuser')}}" method="post">
                                         @csrf
                                         <div class="mb-3">
                                             <div class="row">

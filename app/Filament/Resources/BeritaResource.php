@@ -36,6 +36,15 @@ class BeritaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    public static function getModelLabel(): string
+    {
+        return 'Berita';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Berita';
+    }
     public static function form(Form $form): Form
     {
         return $form
@@ -85,7 +94,6 @@ class BeritaResource extends Resource
                     ->searchable()
                     ->width(100)
                     ->height(50)
-                    ->size(10)
                     ->sortable(),
                 TextColumn::make('list_berita')
                     ->searchable()

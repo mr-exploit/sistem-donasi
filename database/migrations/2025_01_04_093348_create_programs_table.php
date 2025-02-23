@@ -19,8 +19,10 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->integer('target_donasi');
             $table->integer('donasi_terkumpul');
+            $table->enum('kecamatan', ['bengkong', 'batu aji', 'nongsa', 'batam kota', 'bulang', 'galang', 'batu ampar', 'lubuk baja', 'sagulung', 'sei beduk', 'sekupang', 'belakang padang'])->default('batam kota');
             $table->boolean('isDone');
             $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->foreignId('created_by')->constrained('users');
             $table->timestamps();
         });
     }

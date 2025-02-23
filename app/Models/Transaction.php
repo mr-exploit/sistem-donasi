@@ -19,6 +19,7 @@ class Transaction extends Model
         'tgl_faktur',
         'jumlah_donasi',
         'payment_type',
+        'kecamatan',
         'transaction_id',
         'va_number',
         'status',

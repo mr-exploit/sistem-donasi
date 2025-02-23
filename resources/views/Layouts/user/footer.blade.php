@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="{{asset('css/footer.css')}}">
 <!-- Footer -->
 <footer
-        class="text-center text-lg-start mt-4"
-        style="background-color: #DAFFDA; width: 100%; padding-left: 5%; padding-right: 5%;">
+  class="text-center text-lg-start mt-4"
+  style="background-color: #DAFFDA; width: 100%; padding-left: 5%; padding-right: 5%;">
   <!-- Grid container -->
   <div class="p-4 pb-0">
     <!-- Section: Links -->
@@ -11,7 +11,7 @@
       <div class="row">
         <!-- Grid column -->
         <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3" style="width:324px">
-          <img src="{{asset('user/Logo_NU_CARE-LAZISNU 1.svg')}}" alt="Logo Nu" class="img-fluid mb-2" >
+          <img src="{{asset('user/Logo_NU_CARE-LAZISNU 1.svg')}}" alt="Logo Nu" class="img-fluid mb-2">
           <p style="color:#858E85">
             LazisNU Kota Batam adalah Lembaga Amil Zakat, Infak, dan Sedekah Nahdatul Ulama yang berada di Kota Batam. Organisasi ini berfokus pada pemberdayaan masyarakat melalui pemanfaatan dana zakat, infak, wakaf, dan dana keagamaan lainnya untuk berbagai program sosial, seperti pendidikan, kesehatan, kemanusiaan, ekonomi, dan lingkungan.
           </p>
@@ -29,7 +29,7 @@
           </p>
           <p class="d-flex flex-row gap-1" id="telepon-component">
             <img src="{{asset('user/telp.svg')}}" alt="telepon" id="telepon-icon">
-            <a style="color: #858E85; text-decoration: none; margin-left: 10px" id="telepon-text">Telp : (021) <br> Hp/WA  0896202891</a>
+            <a style="color: #858E85; text-decoration: none; margin-left: 10px" id="telepon-text">Telp : (021) <br> Hp/WA 0896202891</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -42,13 +42,13 @@
             Selengkapnya
           </h6>
           <p>
-            <a style="color: #858E85; text-decoration: none;" >Kebijakan Privasi</a>
+            <a style="color: #858E85; text-decoration: none;" href="{{ url('/privacy-and-policy') }}">Kebijakan Privasi</a>
           </p>
           <p>
-            <a style="color: #858E85; text-decoration: none;">Syarat dan Ketentuan</a>
+            <a style="color: #858E85; text-decoration: none;" href="{{ url('/terms-and-condition') }}">Syarat dan Ketentuan</a>
           </p>
           <p>
-            <a style="color: #858E85; text-decoration: none;">Berita</a>
+            <a style="color: #858E85; text-decoration: none;" href="{{ url('/berita') }}">Berita</a>
           </p>
           <p>
             <a style="color: #858E85; text-decoration: none;">Report Tahunan</a>
@@ -60,15 +60,24 @@
 
         <!-- Grid column -->
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h6 class="text-uppercase mt-4 font-weight-bold" style="color: #000000" id="media-sosial-text">
-                Media Sosial
-            </h6>
-            
-            <div class="d-flex flex-row gap" id="media-sosial-component">
-                <img src="{{asset('user/Facebook Circled.svg')}}" alt="facbook" style="width: 20%;">
-                <img src="{{asset('user/Instagram.svg')}}" alt="instagram" style="width: 20%;">
-                <img src="{{asset('user/YouTube.svg')}}" alt="Youtube" style="width: 20%;">
-            </div>
+          <h6 class="text-uppercase mt-4 font-weight-bold" style="color: #000000" id="media-sosial-text">
+            Media Sosial
+          </h6>
+
+          <div class="d-flex flex-row gap" id="media-sosial-component">
+            <!-- <a href="">
+              <img src="{{asset('user/Instagram.svg')}}" alt="instagram" style="width: 20%;">
+            </a>
+            <a href="">
+              <img src="{{asset('user/Facebook Circled.svg')}}" alt="facbook" style="width: 20%;">
+            </a>
+            <a href="">
+              <img src="{{asset('user/YouTube.svg')}}" alt="Youtube" style="width: 20%;">
+            </a> -->
+            <img src="{{asset('user/Facebook Circled.svg')}}" alt="facbook" style="width: 20%;">
+            <img src="{{asset('user/Instagram.svg')}}" alt="instagram" style="width: 20%;">
+            <img src="{{asset('user/YouTube.svg')}}" alt="Youtube" style="width: 20%;">
+          </div>
         </div>
         <!-- Grid column -->
       </div>
@@ -88,7 +97,7 @@
 
         <!-- Grid column -->
         <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
-           <a style="text-decoration: none; color: #696969">Copyright © 2024 LAZISNU Kota Batam</a>
+          <a style="text-decoration: none; color: #696969">Copyright © 2024 LAZISNU Kota Batam</a>
         </div>
         <!-- Grid column -->
       </div>

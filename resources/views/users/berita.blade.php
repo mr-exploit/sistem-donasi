@@ -30,15 +30,16 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach($berita as $berita)
             <div class="col-md-4">
-                <div class="card " style="width: 100%; height: 600px;">
+                <div class="card " style="width: 100%; height: 550px;">
                     <img src="{{ asset('storage/' . $berita->img_berita) }}" class="card-img-top" alt="Sedekah" style="height: 240px; object-fit: cover;" />
                     <div class="card-body">
                         <h4 style="font-size:1rem; font-weight:bold;">{{$berita->judul}}</h4>
                         <div> {!! Str::limit($berita->content, 200) !!}</div>
                         <div class="d-flex flex-row gap-2 align-items-center">
                             <img src="{{ asset('user/calendar-icon.svg') }}" alt="calendar" width="17">
-                            <p class="mb-0">{{$berita->created_at->format('Y-m-d')}}</p>
+
                         </div>
+                        <p class="mb-0">{{$berita->created_at->format('Y-m-d')}}</p>
                         {{-- Button Lihat Berita Selengkapnya --}}
                         <div class="d-flex justify-content-end mt-2">
                             <a href="{{ route('beritaDetail', ['slug' => Str::slug($berita->judul)]) }}"

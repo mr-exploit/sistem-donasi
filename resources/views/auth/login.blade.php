@@ -23,7 +23,7 @@
                                     </div>
                                     <h2 style="color: #007646;" class="mb-4">Login</h2>
                                     @include('layouts.message')
-                                    <form action="" method="post">
+                                    <form action="{{route('createlogin')}}" method="post">
                                         @csrf
                                         <div class="mb-3">
                                             <label for="email" style="color:#858E85;font-weight:bold; text-size: 1.5rem;" class="mb-4">Email</label>

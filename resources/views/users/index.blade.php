@@ -80,67 +80,52 @@
   </div>
 
   {{-- card donasi --}}
-  <div class="container d-flex justify-content-center align-items-center mt-4 flex-row gap-4 flex-wrap">
-    <div class="card" style="width: 18rem;">
-      <img src="{{asset('user/image-card-1.png')}}" class="card-img-top" alt="Zakat" />
-      <div class="card-body">
-        <p>Zakat</p>
-        <h4 style="font-size:1rem; font-weight:bold;">Bangun Sekolah dasar Quran</h4>
-        <p class="card-text">Bengkong</p>
-        <div style="width: 100%; height: 4px; background:#45BF7C; border: none; border-radius: 10px;"></div>
+  <div class="container mt-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      @foreach($donasi as $donasiProgram)
+      <div class="col-md-4">
+        <a href="{{ route('programDetail', ['slug' => Str::slug($donasiProgram->nama)]) }}" style="text-decoration:none;">
+          <div class="card h-100">
+            <img src="{{ asset('storage/' . $donasiProgram->img_program) }}"
+              class="card-img-top"
+              alt="Sedekah"
+              style="height: 250px; object-fit: cover; width: 100%;" /> <!-- Tambah width: 100% -->
 
-        <div class="d-flex justify-content-between align-items-between container mt-4 gap-4">
-          <div class="d-flex flex-column">
-            <p>Donasi Terkumpul</p>
-            <p>Rp100.000.000</p>
+            <div class="card-body d-flex flex-column">
+              <div style="font-size:1rem; font-weight:bold;">{!! $donasiProgram->nama !!}</div>
+              <h5 class="card-text mt-1" style="font-weight: 200;">{{ ucwords($donasiProgram->kecamatan) }}</h5>
+
+              @php
+              $target = $donasiProgram->target_donasi ?? 1;
+              $terkumpul = $donasiProgram->donasi_terkumpul ?? 0;
+              $progress = min(100, ($terkumpul / $target) * 100);
+              @endphp
+
+              <div style="width: 100%; height: 4px; background:#ddd; border-radius: 10px; position: relative;">
+                <div style="width: {{ $progress }}%; height: 4px; background:#45BF7C; border-radius: 10px;"></div>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center mt-5">
+                <div class="d-flex flex-column">
+                  <p>Donasi Terkumpul</p>
+                  <p class="fw-bold">Rp{{ number_format($terkumpul, 0, ',', '.') }}</p>
+                </div>
+                <div class="d-flex flex-column ms-auto text-end">
+                  <p>Donatur</p>
+                  <p class="fw-bold">{{ $donasiProgram->jumlah_donatur }}</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="d-flex flex-column">
-            <p>Donatur</p>
-            <p>18</p>
-          </div>
-        </div>
+        </a>
       </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-      <img src="{{asset('user/image-card-2.png')}}" class="card-img-top" alt="infaq" />
-      <div class="card-body">
-        <p>Infaq</p>
-        <h4 style="font-size:1rem; font-weight:bold;">Bangun Sekolah dasar Quran</h4>
-        <p class="card-text">Bengkong</p>
-        <div style="width: 100%; height: 4px; background:#45BF7C; border: none; border-radius: 10px;"></div>
-        <div class="d-flex justify-content-between align-items-between container mt-4 gap-4">
-          <div class="d-flex flex-column">
-            <p>Donasi Terkumpul</p>
-            <p>Rp100.000.000</p>
-          </div>
-          <div class="d-flex flex-column">
-            <p>Donatur</p>
-            <p>18</p>
-          </div>
-        </div>
-      </div>
+      @endforeach
     </div>
 
-    <div class="card" style="width: 18rem;">
-      <img src="{{asset("user/image-card-3.png")}}" class="card-img-top" alt="Sedekah" />
-      <div class="card-body">
-        <p>Sedekah</p>
-        <h4 style="font-size:1rem; font-weight:bold;">Bangun Sekolah dasar Quran</h4>
-        <p class="card-text">Bengkong</p>
-        <div style="width: 100%; height: 4px; background:#45BF7C; border: none; border-radius: 10px;"></div>
-        <div class="d-flex justify-content-between align-items-between container mt-4 gap-4">
-          <div class="d-flex flex-column">
-            <p>Donasi Terkumpul</p>
-            <p>Rp100.000.000</p>
-          </div>
-          <div class="d-flex flex-column">
-            <p>Donatur</p>
-            <p>18</p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
+  {{-- End card donasi --}}
+
+
   {{-- button donasi selengakapnya --}}
   <div class="d-flex justify-content-center mt-4">
     <a href="{{route('program')}}" class="btn " style="background-color: #DAFFDA; color: #007646;">Lihat Semua Program</a>
